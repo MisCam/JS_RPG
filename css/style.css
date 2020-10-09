@@ -1,7 +1,7 @@
 *{
     margin: 0;
     box-sizing: border-box;
-    color: #001121;
+    color: #d397f5;
 }
 #monster{
     position: absolute;
@@ -9,7 +9,7 @@
     width: 90%;
     display: none;
     margin-top: 20px;
-    background: rgb(233, 70, 70);
+    background: 	#5F2580;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -45,29 +45,26 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    border: 2px solid #6483a1;
-    margin-left: 120px;
-    margin-right: 120px;
     border-radius: 35px;
-    padding: 20px;
-    margin-top: 30px;
-    background: #abd6ff;
+    margin: 30px;
+    padding: 5px;
+    background: #48036F;
 }
 .first-block{
     display: flex;
     flex-direction: row;
-    height: 300px;
+    height: 270px;
     justify-content: space-between;
 }
 .screen{
-    margin-top: 50px;
+    margin-top: 20px;
 }
 .stats{
     display: flex;
     flex-direction: column;
     text-align: center;
-    background: #68aced;
-    margin-top: 50px;
+    background: #7109AA;
+    margin-top: 20px;
     padding: 10px;
     border-radius: 20px;
 }
@@ -78,6 +75,7 @@
     height: 250px;
     width: 400px;
     margin-right: 50px;
+    border-radius: 20px;
 }
 .infos{
     display: flex;
@@ -90,7 +88,7 @@
     font-size: 30px;
 }
 button{
-    background: #68aced;
+    background: #7109AA;
     border: none;
     font-size: 15px;
     padding: 10px;
@@ -98,7 +96,7 @@ button{
     transition: 0.3s linear;
 }
 button:hover{
-    background: #4585c0;
+    background: #51057a;
 }
 input{
     text-align: center;
@@ -119,13 +117,13 @@ input{
     position: absolute;
     display: flex;
     flex-direction: row;
-    background: #4585c0;
+    background: #6e179c;
     height: 100%;
     width: 100%;
 }
 .character{
     margin-top: 40px;
-    background: #2b6397;
+    background: #470669;
     display: flex;
     border-radius: 10px;
     flex-direction: column;

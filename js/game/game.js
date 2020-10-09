@@ -13,9 +13,8 @@ function printWaysButtons(){
         buttons[i].addEventListener('click', function(){
             step = this.dataset.number;
             var chance = Math.random()*100;
-            if(chance > 30){
+            if(chance > 90){
                 callMonster();
-                console.log('suka');
             }
             calculateStats();
             printRoomInfo();
@@ -146,7 +145,7 @@ function printDeathPage(){
 function callMonster(){
     document.getElementById('monster').style.display = 'flex';
     var chance = Math.random()*100;
-    if(chance > 60){
+    if(chance > 50){
         setMonsterInfo(1);
     } else {
         setMonsterInfo(0);
@@ -158,32 +157,42 @@ function setMonsterInfo(number){
     document.getElementById('monsterStats').innerHTML = monsters[number].stats;
     document.getElementById('monsterQuestion').innerHTML = monsters[number].question;
     document.getElementById('monsterText').innerHTML = monsters[number].text;
-    document.getElementById('firstAnswer').innerHTML = monsters[number].answers[0];
-    document.getElementById('secondAnswer').innerHTML = monsters[number].answers[1];
-    document.getElementById('thirdAnswer').innerHTML = monsters[number].answers[2];
-    document.getElementById('fourthAnswer').innerHTML = monsters[number].answers[3];
+    for(var i = 0; i < monsters[number].answers.length; i++){
+        document.getElementById(`answer${i+1}`).innerHTML = monsters[number].answers[i];
+    }
     var answerButtons = document.getElementsByClassName('answerButton');
     for(var i = 0; i < answerButtons.length; i++){
         answerButtons[i].addEventListener('click', function(){
-            var chance = Math.random() * 100;
-            if(chance > 25){
-                document.getElementById('monster').style.display = 'none';
-                if(character.money >= 3000){
-                    character.money -= 3000;
-                } else {
-                    character.money = 0;
-                }
-                
-                if(character.experiense >= 100){
-                    character.experiense -= 100;
-                } 
-                printAbilities()
+            var chance = Math.random() * 4;
+            if(chance > 2){
+                setResultFromMonster(false, number);
             } else {
-                document.getElementById('monster').style.display = 'none';
-                character.money += 3000;
-                character.experiense += 100;
-                printAbilities()  
+                setResultFromMonster(true, number);
             }
         });
     }
+}
+
+function setResultFromMonster(isYouRight, number){
+    if(isYouRight){
+        if(number == 1){
+            document.getElementById('monster-img').src = 'img/trusovAfter.jpg';
+            document.getElementById('monsterQuestion').innerHTML = 'Выглядит неплохо, молодец.';
+            document.getElementById('monsterText').innerHTML = 'Вы дали правильный ответ, в армию ПОКА не пойдёте, увидимся в скором времени, может тогда тебе повезёт меньше.';
+            setTimeout(function(){
+                document.getElementById('monster').style.display = 'none';
+            }, 5000); 
+        }
+        character.experiense += 30; 
+    } else {
+        character.hp -= monsters[number].result.damage;
+        if(monsters[number].name == 'Rodionova'){
+            character.stress = monsters[0].result.stress; 
+        } else {
+            character.stress += monsters[number].result.stress;  
+        } 
+        document.getElementById('monster').style.display = 'none';  
+    }
+    calculateStats();
+    printAbilities();
 }
